@@ -116,7 +116,7 @@ public:
     #endif
 
     std::vector<VIZSprite> sprites;
-
+    BYTE currentLabel;
 private:
 
     BYTE *buffer;
@@ -126,7 +126,7 @@ private:
     bool locked;
 
     BYTE labeled;
-    BYTE currentLabel;
+    
 
     std::unordered_map<AActor*, unsigned int> actors;
 

@@ -683,10 +683,10 @@ void R_EnterMirror (drawseg_t *ds, int depth)
 	R_RenderBSPNode (nodes + numnodes - 1);
 	R_3D_ResetClip(); // reset clips (floor/ceiling)
 
-	vizSLabels->setLabel(PLANE_LABEL);
+	
 	R_DrawPlanes ();
 	R_DrawSkyBoxes ();
-	// vizSLabels->setLabel(0);
+	
 
 	// Allow up to 4 recursions through a mirror
 	if (depth < 4)
@@ -816,6 +816,8 @@ void R_RenderActorView (AActor *actor, bool dontmaplines)
 	if (viewactive)
 	{
 		PlaneCycles.Clock();
+		vizSLabels->setLabel(1);
+		//SCLAB
 		R_DrawPlanes ();
 		R_DrawSkyBoxes ();
 		PlaneCycles.Unclock();
@@ -830,6 +832,7 @@ void R_RenderActorView (AActor *actor, bool dontmaplines)
 		NetUpdate ();
 
 		MaskedCycles.Clock();
+		vizSLabels->setLabel(4);
 		R_DrawMasked ();
 		MaskedCycles.Unclock();
 

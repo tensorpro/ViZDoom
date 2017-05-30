@@ -1303,7 +1303,7 @@ void wallscan (int x1, int x2, short *uwal, short *dwal, fixed_t *swal, fixed_t 
 						vizDepthMap->setPoint(x + pcf, u4 + c);
 					// tensorpro : adding scenery labeling
 					for (int c = 0; c <= dc_count; c++)
-						vizSLabels->setPoint(x + pcf, u4 + c, 2);
+						vizSLabels->setPoint(x + pcf, u4 + c);
 					// vizSLabels->setLabel(0);
 					/*static long long max, min;
 					if(min==0) min=max;

@@ -330,9 +330,16 @@ nextpost:
 //VIZDOOM_CODE
 void R_DrawVisSprite (vissprite_t *vis)
 {
-	auto lab = vizLabels->getLabel(vis);
-	if(vizLabels!=NULL) vizLabels->setLabel(lab);
-	if(vizSLabels!=NULL) vizSLabels->setLabel(3);
+	
+	if(vizLabels!=NULL) {
+		auto lab = vizLabels->getLabel(vis);
+		vizLabels->setLabel(lab);
+	}
+	if(vizSLabels!=NULL){
+		vizSLabels->setLabel(3);
+		// puts("label 3");
+	}
+	// if(vizSLabels!=NULL) vizSLabels->setLabel(3);
 	//SCLAB
 	const BYTE *pixels;
 	const FTexture::Span *spans;
@@ -440,12 +447,13 @@ void R_DrawVisSprite (vissprite_t *vis)
 	R_FinishSetPatchStyle ();
 
 	NetUpdate ();
+	if(vizSLabels!=NULL) vizSLabels->setLabel(4);
 }
 
 void R_DrawWallSprite(vissprite_t *spr)
 {
-	// if(vizSLabels!=NULL) vizSLabels->setLabel(WALL_LABEL);
-
+	if(vizSLabels!=NULL) vizSLabels->setLabel(4);
+	//SCLAB
 	int x1, x2;
 	fixed_t yscale;
 
@@ -571,7 +579,8 @@ void R_DrawWallSprite(vissprite_t *spr)
 			dc_x++;
 		}
 	}
-	R_FinishSetPatchStyle();
+	R_FinishSetPatchStyle();	
+	// if(vizSLabels!=NULL) vizSLabels->setLabel(0);
 }
 
 void R_WallSpriteColumn (void (*drawfunc)(const BYTE *column, const FTexture::Span *spans))
