@@ -405,6 +405,8 @@ BOOST_PYTHON_MODULE(vizdoom)
         .def_readonly("screen_buffer", &GameStatePython::screenBuffer)
         .def_readonly("depth_buffer", &GameStatePython::depthBuffer)
         .def_readonly("labels_buffer", &GameStatePython::labelsBuffer)
+      // tensorpro: adding attribute 'scenery_buffer' to python state object
+        .def_readonly("scenery_buffer", &GameStatePython::slabelsBuffer)
         .def_readonly("automap_buffer", &GameStatePython::automapBuffer)
 
         .def_readonly("labels", &GameStatePython::labels);

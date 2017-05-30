@@ -68,6 +68,9 @@ namespace vizdoom {
             this->pyState->depthBuffer = this->dataToNumpyArray(2, this->grayShape, NPY_UBYTE, this->state->depthBuffer->data());
         if (this->state->labelsBuffer != nullptr)
             this->pyState->labelsBuffer = this->dataToNumpyArray(2, this->grayShape, NPY_UBYTE, this->state->labelsBuffer->data());
+        // tensorpro: Add buffer for scenery
+        if (this->state->slabelsBuffer != nullptr)
+            this->pyState->slabelsBuffer = this->dataToNumpyArray(2, this->grayShape, NPY_UBYTE, this->state->slabelsBuffer->data());
         if (this->state->automapBuffer != nullptr)
             this->pyState->automapBuffer = this->dataToNumpyArray(colorDims, this->colorShape, NPY_UBYTE, this->state->automapBuffer->data());
 

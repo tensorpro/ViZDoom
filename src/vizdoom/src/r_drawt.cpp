@@ -185,10 +185,15 @@ void rt_map1col_c (int hx, int sx, int yl, int yh)
 		for(int y=yl;y<=yh;y++)
 			vizDepthMap->setPoint(sx, y);
 	}
+        if(vizSLabels!=NULL) {
+		for(int y=yl;y<=yh;y++)
+			vizSLabels->setPoint(sx, y);
+	}
 	if(vizLabels!=NULL) {
 		for(int y=yl;y<=yh;y++)
 			vizLabels->setPoint(sx, y);
 	}
+
 }
 
 //VIZDOOM_CODE
@@ -230,6 +235,11 @@ void STACK_ARGS rt_map4cols_c (int sx, int yl, int yh)
 				vizLabels->setPoint((unsigned int) sx + dx, (unsigned int) yl + y_mod);
 			}
 		}
+                if(vizSLabels!=NULL) {
+			for (int dx = 0; dx < 4; dx++) {
+				vizSLabels->setPoint((unsigned int) sx + dx, (unsigned int) yl + y_mod);
+			}
+		}
 		y_mod+=1;
 	}
 	if (!(count >>= 1))
@@ -259,6 +269,12 @@ void STACK_ARGS rt_map4cols_c (int sx, int yl, int yh)
 			for (int dx = 0; dx < 4; dx++) {
 				for (int dy = 0; dy < 2; dy++)
 					vizLabels->setPoint((unsigned int) sx + dx, (unsigned int) yl + y_mod + dy);
+			}
+		}
+                if(vizSLabels!=NULL) {
+			for (int dx = 0; dx < 4; dx++) {
+				for (int dy = 0; dy < 2; dy++)
+					vizSLabels->setPoint((unsigned int) sx + dx, (unsigned int) yl + y_mod + dy);
 			}
 		}
 		y_mod += 2;
@@ -588,6 +604,9 @@ void rt_addclamp1col (int hx, int sx, int yl, int yh)
 		if(vizLabels!=NULL) {
 			vizLabels->setPoint((unsigned int) sx, (unsigned int) yh-count);
 		}
+                if(vizSLabels!=NULL) {
+			vizSLabels->setPoint((unsigned int) sx, (unsigned int) yh-count);
+		}
 	} while (--count);
 }
 
@@ -659,6 +678,11 @@ void STACK_ARGS rt_addclamp4cols_c (int sx, int yl, int yh)
 		if(vizLabels!=NULL) {
 			for (int dx = 0; dx < 4; dx++) {
 				vizLabels->setPoint((unsigned int) sx + dx, (unsigned int) yh-count);
+			}
+		}
+                if(vizSLabels!=NULL) {
+			for (int dx = 0; dx < 4; dx++) {
+				vizSLabels->setPoint((unsigned int) sx + dx, (unsigned int) yh-count);
 			}
 		}
 		source += 4;

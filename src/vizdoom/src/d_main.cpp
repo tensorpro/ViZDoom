@@ -713,6 +713,8 @@ void D_Display ()
 	//VIZDOOM_CODE
 	if(vizDepthMap!=NULL) vizDepthMap->sizeUpdate();
 	if(vizLabels!=NULL) vizLabels->sizeUpdate();
+        //tensorpro : update visSLabels as well
+        if(vizSLabels!=NULL) vizSLabels->sizeUpdate();
 
 	RenderTarget = screen;
 
@@ -979,8 +981,14 @@ void VIZ_D_MapDisplay(){
 	//disable additional buffers in this pass
 	VIZDepthBuffer *_vizDepthMap = vizDepthMap;
 	VIZLabelsBuffer *_vizLabels = vizLabels;
+
 	vizDepthMap = NULL;
 	vizLabels = NULL;
+        
+
+        // tensorpro add vizSLabels logic
+        vizSLabels = NULL;
+        VIZLabelsBuffer *_vizSLabels = vizSLabels;
 
 	bool wipe;
 	bool hw2d;
@@ -1177,6 +1185,8 @@ void VIZ_D_MapDisplay(){
 
 	vizDepthMap = _vizDepthMap;
 	vizLabels = _vizLabels;
+        //tensorpro add visSLabels logic
+        vizSLabels = _vizSLabels;
 
 	AM_ToggleMap ();
 	automapactive = _automapactive;

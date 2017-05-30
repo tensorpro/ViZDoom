@@ -30,7 +30,7 @@
 #include <boost/interprocess/shared_memory_object.hpp>
 #include <cstdint>
 
-#define SM_REGION_COUNT 6
+#define SM_REGION_COUNT 7
 
 #define MAX_LABELS 256
 #define MAX_LABEL_NAME_LEN 64
@@ -182,7 +182,7 @@ namespace vizdoom {
         uint8_t *getDepthBuffer();
         uint8_t *getLabelsBuffer();
         uint8_t *getAutomapBuffer();
-
+        uint8_t *getSLabelsBuffer();
     private:
         bip::shared_memory_object sm;
         bip::offset_t size;
@@ -193,7 +193,7 @@ namespace vizdoom {
         void deleteRegion(SMRegion *regionPtr);
 
         //0 - GameState, 1 - InputState, 2 - ScreenBuffer, 3 - DepthBuffer, 4 - LabelsBuffer, 5 - AutomapBuffer
-        SMRegion region[6];
+        SMRegion region[7];
     };
 }
 

@@ -51,6 +51,11 @@
 #define VIZ_MAX_LABELS 256
 #define VIZ_MAX_LABEL_NAME_LEN 64
 
+#define PLANE_LABEL 0
+#define WALL_LABEL 1
+#define DYNAMIC_LABEL 2
+
+
 struct VIZLabel{
     unsigned int objectId;
     char objectName[VIZ_MAX_LABEL_NAME_LEN];
@@ -133,4 +138,6 @@ private:
 };
 
 extern VIZLabelsBuffer* vizLabels;
+extern VIZLabelsBuffer* vizSLabels;
+extern BYTE SLABEL;
 #endif

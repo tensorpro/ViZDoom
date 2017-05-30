@@ -34,6 +34,9 @@ bool alpha;
 
 BYTE *vizScreenSM = NULL, *vizDepthSM = NULL, *vizLabelsSM = NULL, *vizAutomapSM = NULL;
 
+// tensorpro: Declare shared memory for the scenery labels
+BYTE *vizSLabelsSM = NULL;
+
 EXTERN_CVAR (Bool, viz_debug)
 EXTERN_CVAR (Int, viz_screen_format)
 EXTERN_CVAR (Bool, viz_depth)
@@ -153,16 +156,25 @@ void VIZ_ScreenFormatUpdate(){
         delete vizLabels;
         vizLabels = NULL;
     }
+    if (vizSLabels != NULL){ //tensorpro : add deletion for scenery buffer
+        delete vizSLabels;
+        vizSLabels = NULL;
+    }
 
     if(!*viz_nocheat) {
         if (*viz_depth) vizDepthMap = new VIZDepthBuffer(vizScreenWidth, vizScreenHeight);
-        if (*viz_labels) vizLabels = new VIZLabelsBuffer(vizScreenWidth, vizScreenHeight);
+        if (*viz_labels) {
+            vizLabels = new VIZLabelsBuffer(vizScreenWidth, vizScreenHeight);
+            vizSLabels = new VIZLabelsBuffer(vizScreenWidth, vizScreenHeight);
+            //tensorpro : add vizSLabels initialization when cheats are permitted
+        }
     }
 }
 
 void VIZ_ScreenUpdateSM(){
 
-    size_t SMBufferSize[4] = {vizScreenSize, 0, 0, 0};
+    // tensorpro: Add space for additional buffer in SMBufferSize
+    size_t SMBufferSize[5] = {vizScreenSize, 0, 0, 0};
     size_t SMBuffersSize = vizScreenSize;
     if (*viz_depth){
         SMBuffersSize += vizScreenChannelSize;
@@ -176,11 +188,16 @@ void VIZ_ScreenUpdateSM(){
         SMBuffersSize += vizScreenSize;
         SMBufferSize[3] = vizScreenSize;
     }
-
+    if (*viz_labels){ // tensorpro : update SMBufferSize entry for scenery labels
+        SMBuffersSize += vizScreenSize;
+        SMBufferSize[4] = vizScreenSize;
+    }
+    
     VIZ_SMUpdate(SMBuffersSize);
 
     try {
-        for (int i = 0; i != 4; ++i) {
+        // tensorpro : allocate an additional buffer region (forloop upper bound from 4 to 5)
+        for (int i = 0; i != 5; ++i) {
             VIZSMRegion *bufferRegion = &vizSMRegion[i + 2];
             if (SMBufferSize[i]) {
                 VIZ_SMCreateRegion(bufferRegion, false, VIZ_SMGetRegionOffset(bufferRegion), SMBufferSize[i]);
@@ -200,6 +217,8 @@ void VIZ_ScreenUpdateSM(){
     vizDepthSM = static_cast<BYTE *>(vizSMRegion[3].address);
     vizLabelsSM = static_cast<BYTE *>(vizSMRegion[4].address);
     vizAutomapSM = static_cast<BYTE *>(vizSMRegion[5].address);
+    vizSLabelsSM = static_cast<BYTE *>(vizSMRegion[6].address);
+    // tensorpro : cast new region of bufferregion
 }
 
 void VIZ_CopyBuffer(BYTE *vizBuffer){
@@ -258,6 +277,9 @@ void VIZ_ScreenUpdate(){
     if (*viz_labels && vizLabels != NULL)
         memcpy(vizLabelsSM, vizLabels->getBuffer(), vizLabels->getBufferSize());
 
+    if (*viz_labels && vizSLabels != NULL) // tensorpro : udpate shared memory region
+        memcpy(vizSLabelsSM, vizSLabels->getBuffer(), vizSLabels->getBufferSize());
+
     screen->Unlock();
 }
 
@@ -270,4 +292,5 @@ void VIZ_ScreenLevelMapUpdate(){
 void VIZ_ScreenClose(){
     if(vizDepthMap) delete vizDepthMap;
     if(vizLabels) delete vizLabels;
+    if(vizSLabels) delete vizSLabels; // tensorpro : delete scenery buffer on screen close
 }

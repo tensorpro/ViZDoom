@@ -53,7 +53,8 @@
 #include "v_palette.h"
 #include "r_data/colormaps.h"
 #include "viz_depth.h"
-
+#include "viz_labels.h"
+// tensorpro : including viz_label for scenery labeling
 #define WALLYREPEAT 8
 
 
@@ -1300,6 +1301,10 @@ void wallscan (int x1, int x2, short *uwal, short *dwal, fixed_t *swal, fixed_t 
 						vizDepthMap->setActualDepth(0);
 					for (int c = 0; c <= dc_count; c++)
 						vizDepthMap->setPoint(x + pcf, u4 + c);
+					// tensorpro : adding scenery labeling
+					for (int c = 0; c <= dc_count; c++)
+						vizSLabels->setPoint(x + pcf, u4 + c, 2);
+					// vizSLabels->setLabel(0);
 					/*static long long max, min;
 					if(min==0) min=max;
 					if(a_dc_iscale>max||a_dc_iscale<min)

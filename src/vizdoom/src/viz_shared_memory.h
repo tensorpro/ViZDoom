@@ -27,7 +27,7 @@
 #include <boost/interprocess/mapped_region.hpp>
 
 #define VIZ_SM_NAME_BASE "ViZDoomSM"
-#define VIZ_SM_REGION_COUNT 6
+#define VIZ_SM_REGION_COUNT 7
 
 #define VIZ_SM_GAMESTATE    vizSMRegion[0]
 #define VIZ_SM_INPUTSTATE   vizSMRegion[1]
@@ -35,6 +35,7 @@
 #define VIZ_SM_DEPTH        vizSMRegion[3]
 #define VIZ_SM_LABELS       vizSMRegion[4]
 #define VIZ_SM_AUTOMAP      vizSMRegion[5]
+#define VIZ_SM_SLABELS      vizSMRegion[6]
 
 namespace bip = boost::interprocess;
 

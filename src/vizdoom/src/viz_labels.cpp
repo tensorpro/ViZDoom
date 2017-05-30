@@ -28,6 +28,8 @@
 #endif
     
 VIZLabelsBuffer* vizLabels = NULL;
+VIZLabelsBuffer* vizSLabels = NULL;
+BYTE SLABEL = 0;
 
 VIZLabelsBuffer::VIZLabelsBuffer(unsigned int width, unsigned int height):
         bufferSize(height * width), bufferWidth(width), bufferHeight(height) {

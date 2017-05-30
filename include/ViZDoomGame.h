@@ -149,6 +149,9 @@ namespace vizdoom {
         bool isLabelsBufferEnabled();
         void setLabelsBufferEnabled(bool labelsBuffer);
 
+        bool isSLabelsBufferEnabled();
+        void setSLabelsBufferEnabled(bool labelsBuffer);
+
         bool isAutomapBufferEnabled();
         void setAutomapBufferEnabled(bool automapBuffer);
 

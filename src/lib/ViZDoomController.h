@@ -184,6 +184,10 @@ namespace vizdoom {
         bool isLabelsEnabled();
         void setLabelsEnabled(bool labels);
 
+        /* tensorpro: Scenery Labels */
+        bool isSLabelsEnabled();
+        void setSLabelsEnabled(bool labels);
+
         /* Automap */
         bool isAutomapEnabled();
         void setAutomapEnabled(bool map);
@@ -195,6 +199,7 @@ namespace vizdoom {
         uint8_t *const getScreenBuffer();
         uint8_t *const getDepthBuffer();
         uint8_t *const getLabelsBuffer();
+        uint8_t *const getSLabelsBuffer();
         uint8_t *const getAutomapBuffer();
 
         /* Buttons getters and setters */
@@ -306,7 +311,8 @@ namespace vizdoom {
         uint8_t *depthBuffer;
         uint8_t *automapBuffer;
         uint8_t *labelsBuffer;
-
+        uint8_t *slabelsBuffer;
+        // tensorpro add slabelsbuffer to controller 
 
         /* Settings */
         /*------------------------------------------------------------------------------------------------------------*/

@@ -61,6 +61,8 @@ namespace vizdoom {
         bpya::object screenBuffer;
         bpya::object depthBuffer;
         bpya::object labelsBuffer;
+      // tensorpro: Adding variable for scenery labels
+        bpya::object slabelsBuffer;
         bpya::object automapBuffer;
 
         bpy::list labels;

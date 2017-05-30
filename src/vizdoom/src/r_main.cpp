@@ -683,8 +683,10 @@ void R_EnterMirror (drawseg_t *ds, int depth)
 	R_RenderBSPNode (nodes + numnodes - 1);
 	R_3D_ResetClip(); // reset clips (floor/ceiling)
 
+	vizSLabels->setLabel(PLANE_LABEL);
 	R_DrawPlanes ();
 	R_DrawSkyBoxes ();
+	// vizSLabels->setLabel(0);
 
 	// Allow up to 4 recursions through a mirror
 	if (depth < 4)
@@ -761,6 +763,7 @@ void R_RenderActorView (AActor *actor, bool dontmaplines)
 	R_ClearSprites ();
 	if(vizDepthMap!=NULL) vizDepthMap->clearBuffer();
 	if(vizLabels!=NULL) vizLabels->clearBuffer();
+	if(vizLabels!=NULL) vizSLabels->clearBuffer();
 	NetUpdate ();
 
 	// [RH] Show off segs if r_drawflat is 1
@@ -825,7 +828,7 @@ void R_RenderActorView (AActor *actor, bool dontmaplines)
 		}
 
 		NetUpdate ();
-		
+
 		MaskedCycles.Clock();
 		R_DrawMasked ();
 		MaskedCycles.Unclock();

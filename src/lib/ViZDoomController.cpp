@@ -30,7 +30,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/chrono.hpp>
 #include <boost/lexical_cast.hpp>
-
+#include <stdio.h>
 
 namespace vizdoom {
 
@@ -56,6 +56,8 @@ namespace vizdoom {
         this->screenBuffer = nullptr;
         this->depthBuffer = nullptr;
         this->labelsBuffer = nullptr;
+        //tensorpro: adding slabelsBuffer
+        this->slabelsBuffer = nullptr;
         this->automapBuffer = nullptr;
 
         /* Threads */
@@ -168,6 +170,8 @@ namespace vizdoom {
                 this->screenBuffer = this->SM->getScreenBuffer();
                 this->depthBuffer = this->SM->getDepthBuffer();
                 this->labelsBuffer = this->SM->getLabelsBuffer();
+                // puts("updating");
+                this->slabelsBuffer = this->SM->getSLabelsBuffer();
                 this->automapBuffer = this->SM->getAutomapBuffer();
 
                 // Check version
@@ -244,6 +248,8 @@ namespace vizdoom {
         this->screenBuffer = nullptr;
         this->depthBuffer = nullptr;
         this->labelsBuffer = nullptr;
+        //tensorpro: setting slabelsBuffer to null
+        this->slabelsBuffer = nullptr;
         this->automapBuffer = nullptr;
     }
 
@@ -603,6 +609,22 @@ namespace vizdoom {
         }
     }
 
+
+    /* tensorpro : sLabels */
+    bool DoomController::isSLabelsEnabled() {
+        if (this->doomRunning) return this->gameState->LABELS;
+        else return labels;
+    }
+
+    void DoomController::setSLabelsEnabled(bool labels) {
+        this->labels = labels;
+        if (this->doomRunning) {
+            // if (this->automap) this->sendCommand("viz_slabels 1");
+            // else this->sendCommand("viz_slabels 0");
+        }
+    }
+
+  
     /* Automap */
     bool DoomController::isAutomapEnabled() {
         if (this->doomRunning) return this->gameState->AUTOMAP;
@@ -808,6 +830,9 @@ namespace vizdoom {
     uint8_t *const DoomController::getDepthBuffer() { return this->depthBuffer; }
 
     uint8_t *const DoomController::getLabelsBuffer() { return this->labelsBuffer; }
+
+  // tensorpro: adding getter for scenery labels
+    uint8_t *const DoomController::getSLabelsBuffer() { return this->slabelsBuffer; }
 
     uint8_t *const DoomController::getAutomapBuffer() { return this->automapBuffer; }
 

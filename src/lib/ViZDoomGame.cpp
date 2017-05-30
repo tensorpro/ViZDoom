@@ -217,6 +217,8 @@ namespace vizdoom {
             if (this->doomController->isLabelsEnabled()) {
                 buf = this->doomController->getLabelsBuffer();
                 this->state->labelsBuffer = std::make_shared<std::vector<uint8_t>>(buf, buf + graySize);
+                buf = this->doomController->getSLabelsBuffer();
+                this->state->slabelsBuffer = std::make_shared<std::vector<uint8_t>>(buf, buf + graySize);
             } else this->state->labelsBuffer = nullptr;
 
             if (this->doomController->isAutomapEnabled()) {
@@ -469,6 +471,11 @@ namespace vizdoom {
 
     void DoomGame::setLabelsBufferEnabled(bool lebelsBuffer) { this->doomController->setLabelsEnabled(lebelsBuffer); }
 
+  // tensorpro : adding getter/setter for enabling SLabelsbuffer
+    bool DoomGame::isSLabelsBufferEnabled() { return this->doomController->isSLabelsEnabled(); }
+
+    void DoomGame::setSLabelsBufferEnabled(bool lebelsBuffer) { this->doomController->setSLabelsEnabled(lebelsBuffer); }
+  
     bool DoomGame::isAutomapBufferEnabled() { return this->doomController->isAutomapEnabled(); }
 
     void DoomGame::setAutomapBufferEnabled(bool automapBuffer) {

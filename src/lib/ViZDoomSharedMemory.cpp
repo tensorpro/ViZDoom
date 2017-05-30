@@ -134,4 +134,9 @@ namespace vizdoom {
     uint8_t *SharedMemory::getAutomapBuffer() {
         return static_cast<uint8_t *>(this->region[5].address);
     }
+
+  // tensorpor : add getter for sLablesBuffer
+    uint8_t *SharedMemory::getSLabelsBuffer() {
+        return static_cast<uint8_t *>(this->region[6].address);
+    }
 }

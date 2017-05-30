@@ -330,8 +330,10 @@ nextpost:
 //VIZDOOM_CODE
 void R_DrawVisSprite (vissprite_t *vis)
 {
-	if(vizLabels!=NULL) vizLabels->setLabel(vizLabels->getLabel(vis));
-
+	auto lab = vizLabels->getLabel(vis);
+	if(vizLabels!=NULL) vizLabels->setLabel(lab);
+	if(vizSLabels!=NULL) vizSLabels->setLabel(3);
+	//SCLAB
 	const BYTE *pixels;
 	const FTexture::Span *spans;
 	fixed_t 		frac;
@@ -442,6 +444,8 @@ void R_DrawVisSprite (vissprite_t *vis)
 
 void R_DrawWallSprite(vissprite_t *spr)
 {
+	// if(vizSLabels!=NULL) vizSLabels->setLabel(WALL_LABEL);
+
 	int x1, x2;
 	fixed_t yscale;
 

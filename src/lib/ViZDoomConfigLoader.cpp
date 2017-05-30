@@ -544,6 +544,8 @@ namespace vizdoom {
                 }
                 if (key == "labels_buffer_enabled" || key == "labelsbufferenabled") {
                     this->game->setLabelsBufferEnabled(stringToBool(val));
+                    // tensorpro : enable scenery buffer whenever labels are
+                    this->game->setSLabelsBufferEnabled(stringToBool(val));
                     continue;
                 }
                 if (key == "automap_buffer_enabled" || key == "automapbufferenabled") {

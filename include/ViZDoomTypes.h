@@ -51,6 +51,8 @@ namespace vizdoom{
         BufferPtr screenBuffer;
         BufferPtr depthBuffer;
         BufferPtr labelsBuffer;
+      // tensorpro: adding slabels to GameState struct
+        BufferPtr slabelsBuffer;
         BufferPtr automapBuffer;
 
         std::vector<Label> labels;
