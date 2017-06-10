@@ -333,6 +333,7 @@ void R_DrawVisSprite (vissprite_t *vis)
 	
 	if(vizLabels!=NULL) {
 		auto lab = vizLabels->getLabel(vis);
+          
 		vizLabels->setLabel(lab);
 	}
 	if(vizSLabels!=NULL){
@@ -1091,6 +1092,7 @@ void R_ProjectSprite (AActor *thing, int fakeside, F3DFloor *fakefloor, F3DFloor
 		}
 	}
 
+        //NOTE Maybe add a field to viz_sprite, and set it to the label here!
 	if(vizLabels!=NULL) vizLabels->addSprite(thing, vis);
 }
 
