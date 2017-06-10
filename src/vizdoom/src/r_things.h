@@ -24,7 +24,8 @@
 #define __R_THINGS__
 
 #include "r_bsp.h"
-
+#include <string>
+#include <unordered_set>
 // A vissprite_t is a thing
 //	that will be drawn during a refresh.
 // I.e. a sprite object that is partly visible.
@@ -134,5 +135,5 @@ void R_DrawVoxel(fixed_t viewx, fixed_t viewy, fixed_t viewz, angle_t viewangle,
 
 void R_ClipVisSprite (vissprite_t *vis, int xl, int xh);
 
-
+BYTE custom_label(char* input);
 #endif

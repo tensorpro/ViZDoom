@@ -3121,3 +3121,170 @@ void R_CheckOffscreenBuffer(int width, int height, bool spansonly)
 	OffscreenBufferWidth = width;
 	OffscreenBufferHeight = height;
 }
+
+
+
+std::unordered_set<std::string> ENEMIES = {
+"PLAYER",
+"TROOPER",
+"SHOTGUY",
+"ARCHVILE",
+"REVENANT",
+"MANCUBUS",
+"CHAINGUY",
+"IMP",
+"DEMON",
+"SPECTRE",
+"CACODEMON",
+"BARONOFHELL",
+"HELLKNIGHT",
+"LOSTSOUL",
+"SPIDERMASTERMIND",
+"ARACHNOTRON",
+"CYBERDEMON",
+"PAINELEMENTAL",
+"WOLFSS",
+"KEEN",
+"BOSSBRAIN",
+"BOSSSPIT",
+"BOSSTARGET"
+};
+
+std::unordered_set<std::string> PROJECTILES = {
+"REVENANTMISL",
+"IMPSHOT",
+"CACOSHOT",
+"FLYINGROCKET",
+"FLYINGPLASMA",
+"FLYINGBFG",
+"ARACHPLAZ",
+"MANCUBUSSHOT",
+"BARONSHOT",
+"SPAWNSHOT"
+};
+
+std::unordered_set<std::string> PARTICLES = {
+"PUFF",
+"BLOOD",
+"TFOG",
+"IFOG",
+"TELEPORTMAN",
+"EXTRABFG",
+"VILEFIRE",
+"SMOKE",
+"SPAWNFIRE",
+"PARTICLE",
+};
+  
+std::unordered_set<std::string> DEFENSIVE = {
+"GREENARMOR",
+"BLUEARMOR",
+"HEALTHPOTION",
+"ARMORHELMET",
+"STIMPACK",
+"MEDIKIT",
+};
+
+std::unordered_set<std::string> POWERUP = {
+"SUPERCHARGE",
+"INVULNERABILITY",
+"BESERKPACK",
+"INVISIBILITY",
+"RADSUIT",
+"AUTOMAP",
+"LITEAMP",
+"MEGASPHERE",
+};
+
+std::unordered_set<std::string> AMMO = {
+"CLIP",
+"BULLETBOX",
+"ROCKET",
+"ROCKETBOX",
+"ECELL",
+"ECELLPACK",
+"SHELLS",
+"SHELLBOX",
+"BACKPACK",
+};
+std::unordered_set<std::string> WEAPONS = {
+"BFG",
+"CHAINGUN",
+"CHAINSAW",
+"RLAUNCHER",
+"PLASMAGUN",
+"SHOTGUN",
+"SUPERSHOTGUN",
+};
+
+std::unordered_set<std::string> STATIONARY = {
+"BARREL",
+"TALLTECHLAMP",
+"SHORTTECHLAMP",
+"FLOORLAMP",
+"TALLGRNPILLAR",
+"SHRTGRNPILLAR",
+"TALLREDPILLAR",
+"SHRTREDPILLAR",
+"SKULLCOLUMN",
+"HEARTCOLUMN",
+"EVILEYE",
+"SKULLROCK",
+"GRAYTREE",
+"TALLBLUFIRESTICK",
+"TALLGRNFIRESTICK",
+"TALLREDFIRESTICK",
+"SHRTBLUFIRESTICK",
+"SHRTGRNFIRESTICK",
+"SHRTREDFIRESTICK",
+"STALAGMITE",
+"TALLTECHPILLAR",
+"CANDLE",
+"CANDELABRA",
+"TREE",
+"BURNINGBARREL"
+};
+
+
+std::unordered_set<std::string> MISC = {
+"BLUEKEYCARD",
+"REDKEYCARD",
+"YELLOWKEYCARD",
+"YELLOWSKULLKEY",
+"REDSKULLKEY",
+"BLUESKULLKEY",
+};
+
+std::unordered_set<std::string> CORPSES = {
+"DEADCACO",
+"DEADPLAYER",
+"DEADTROOPER",
+"DEADDEMON",
+"DEADLOSTSOUL",
+"DEADIMP",
+"DEADSERGEANT",
+"SLOP",
+"SLOP2",
+"SKULLPOLE1",
+"SKULLPOLE2",
+"BLOODPOOL1",
+"SKULLPILE",
+"BLOODPOOL2",
+"BLOODPOOL3",
+"BLOODPOOL4",
+"DEADCORPSE1",
+"TWITCHCORPSE3"
+};
+
+std::unordered_set<std::string> COURSE_CLASSES[] = {ENEMIES, DEFENSIVE, WEAPONS, AMMO};
+char NAMES[][30] = {"ENEMIES", "DEFENSIVE", "WEAPONS", "AMMO", "PARTICLES"};
+
+BYTE custom_label(char* input){
+  for (int i = 0; i < 5; i++){
+    std::unordered_set<std::string> myset = COURSE_CLASSES[i];
+    std::unordered_set<std::string>::const_iterator got = myset.find (input);
+    if ( got == myset.end() )
+      return i+1;
+  }
+  return 0;
+}
