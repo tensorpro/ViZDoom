@@ -332,10 +332,10 @@ void R_DrawVisSprite (vissprite_t *vis)
 {
 	
   if(vizLabels!=NULL) {
-    auto lab = vizLabels->getLabel(vis);
+    // auto lab = vizLabels->getLabel(vis);
     //vis->LABEL = 1;
-    vizLabels->setLabel(lab);
-    // vizLabels->setLabel(vis->LABEL);
+    // vizLabels->setLabel(lab);
+    vizLabels->setLabel(vis->LABEL);
     
   }
   if(vizSLabels!=NULL){
