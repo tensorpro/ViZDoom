@@ -3137,7 +3137,7 @@ void R_CheckOffscreenBuffer(int width, int height, bool spansonly)
 
 
 std::unordered_set<std::string> ENEMIES = {
-  "ZombieMan",
+  "Zombieman",
   "ShotgunGuy",
   "Archvile",
   "Revenant",
