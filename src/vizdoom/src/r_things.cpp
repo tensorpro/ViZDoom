@@ -1101,7 +1101,7 @@ void R_ProjectSprite (AActor *thing, int fakeside, F3DFloor *fakefloor, F3DFloor
     vizLabels->addSprite(thing, vis);
     char nameStr[VIZ_MAX_LABEL_NAME_LEN];
     strncpy(nameStr, thing->GetClass()->TypeName.GetChars(), VIZ_MAX_LABEL_NAME_LEN);
-    puts(nameStr);
+    // puts(nameStr);
     vis->LABEL = custom_label(nameStr);
   }
 }
@@ -3221,7 +3221,7 @@ BYTE custom_label(char* input){
     
     std::unordered_set<std::string>::const_iterator got = myset.find (input);
     if ( got != myset.end() ){
-      std::cout << input << " is in " << NAMES[i] << "\n";
+      // std::cout << input << " is in " << NAMES[i] << "\n";
       return i+1;
     }
   }
