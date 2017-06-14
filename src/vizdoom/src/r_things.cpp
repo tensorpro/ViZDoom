@@ -3165,6 +3165,7 @@ std::unordered_set<std::string> ENEMIES = {
 
   
 std::unordered_set<std::string> DEFENSIVE = {
+  "CustomMedikit",
   "GreenArmor",
   "BlueArmor",
   "HealthBonus",
@@ -3216,6 +3217,7 @@ std::unordered_set<std::string> COURSE_CLASSES[] = {ENEMIES, DEFENSIVE, WEAPONS,
 char NAMES[][30] = {"ENEMIES", "DEFENSIVE", "WEAPONS", "AMMO", "PLAYERS"};
 
 BYTE custom_label(char* input){
+  // puts(input);
   for (int i = 0; i < 5; i++){
     std::unordered_set<std::string> myset = COURSE_CLASSES[i];
     
